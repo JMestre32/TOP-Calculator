@@ -1,0 +1,40 @@
+body{
+    /* Fixes calculator orientation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* This is what puts it in the center */
+    height: 100vh
+}
+.calc-container{
+
+    /* Sizing */
+    width: 500px;
+    height: 700px;
+    
+    /* Orientation */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Border */
+    border-style: solid;
+    border-width: thick;
+    border-radius: 25px;
+    border-color: black;
+
+    /* Background */
+    background-color: #3b3b38;
+}
+
+.display{
+    margin-top: 10px;
+    border-style: solid;
+    border-color: black;
+    background-color: #a0fb98;
+    border-radius: 15px;
+
+    width: 450px;
+    height: 20%
+}
