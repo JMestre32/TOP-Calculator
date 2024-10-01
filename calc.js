@@ -27,3 +27,11 @@ function operate(left, operand, right){
         }
     }
 }
+
+
+
+const display = document.querySelector(".display")
+
+
+const svn = document.querySelector("#seven")
+svn.onclick = () => display.textContent = "7"
