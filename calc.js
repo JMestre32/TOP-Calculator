@@ -32,8 +32,17 @@ function operate(left, operand, right){
 
 const display = document.querySelector(".display")
 
+// Number event listeners
 const zero = document.querySelector("#zero")
-zero.onclick = () => display.textContent = display.textContent.concat(zero.textContent)
+zero.onclick = () => {
+    if(display.textContent === ""){
+        return
+    }
+    else{
+        display.textContent = display.textContent.concat(zero.textContent)
+    }
+    
+}
 const one = document.querySelector("#one")
 one.onclick = () => display.textContent = display.textContent.concat(one.textContent)
 const two = document.querySelector("#two")
@@ -53,8 +62,90 @@ eight.onclick = () => display.textContent = display.textContent.concat(eight.tex
 const nine = document.querySelector("#nine")
 nine.onclick = () => display.textContent = display.textContent.concat(nine.textContent)
 const dot = document.querySelector("#dot")
-dot.onclick = () => display.textContent = display.textContent.concat(dot.textContent)
+dot.onclick = () => {
+    if(display.textContent.includes(".")){
+        return
+    }
+    else{
+        display.textContent = display.textContent.concat(dot.textContent)
+    }
+    
+}
 
-
+// Clear event listener
 const clear = document.querySelector(".clear")
 clear.onclick = () => display.textContent = ""
+
+
+// Operation event listeners
+let left = ""
+let operation
+let right = ""
+const addition = document.querySelector("#addition")
+const subtraction = document.querySelector("#subtraction")
+const division = document.querySelector("#division")
+const multiply = document.querySelector("#multiplication")
+
+if(left == ""){
+    addition.onclick = () =>{
+        operation = "+"
+        left = display.textContent
+        display.textContent = ""
+    }
+    subtraction.onclick = () =>{
+        operation = "-"
+        left = display.textContent
+        display.textContent = ""
+    }
+    multiplication.onclick = () =>{
+        operation = "*"
+        left = display.textContent
+        display.textContent = ""
+    }
+    division.onclick = () =>{
+        operation = "/"
+        left = display.textContent
+        display.textContent = ""
+    }
+}
+
+// Misc event listeners (i.e. +/-, backspace, equals)
+
+const equal = document.querySelector("#equal")
+const plusMinus = document.querySelector(".plusMinus")
+const backSpace = document.querySelector(".backspace")
+
+equal.onclick = () => {
+    if(left != "" && operation != ""){
+        right = display.textContent
+        console.log(left)
+        console.log(operation)
+        console.log(right)
+        
+        display.textContent = operate(Number(left), operation, Number(right))
+    }
+    else if(display.textContent === "80085") {
+        window.open("https://www.youtube.com/watch?v=kvTJyMmadmA", '_blank').focus();
+    }
+    else{
+        alert("sup")
+    }
+}
+
+plusMinus.onclick = () => {
+    if(display.textContent === ""){
+        return
+    }
+    else if(display.textContent.includes("-")){
+        display.textContent = display.textContent.replace('-', '')
+    }
+    else{
+        display.textContent = "-" + display.textContent
+    }
+}
+
+
+backSpace.onclick = () => {
+    display.textContent = display.textContent.slice(0, -1)
+}
+
