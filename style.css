@@ -5,7 +5,9 @@ body{
     align-items: center;
 
     /* This is what puts it in the center */
-    height: 100vh
+    min-height: 90vh;
+    min-width: 90vh;
+
 }
 .calc-container{
 
