@@ -1,27 +1,34 @@
+let called = false;
 function operate(left, operand, right){
     if(typeof(left) != "number" || !(typeof(right) === "number")){
         return "not a number bruv"
     }
     else if(operand === "+"){
+        called = true
         return left + right
     }
     else if (operand === "-"){
+        called = true
         return left - right
     }
     else if (operand === "*"){
+        called = true
         return left * right
     }
     else if (operand === "/")
     {
         if(right === 0){
+
             return "no."
         }
         else{
             if((left/right) % 1 != 1){
                 console.log("here")
+                called = true
                 return Math.round((left/right)*100)/100
             }
             else{
+                called = true
                 return left/right
             }
         }
@@ -72,10 +79,6 @@ dot.onclick = () => {
     
 }
 
-// Clear event listener
-const clear = document.querySelector(".clear")
-clear.onclick = () => display.textContent = ""
-
 
 // Operation event listeners
 let left = ""
@@ -115,20 +118,34 @@ const equal = document.querySelector("#equal")
 const plusMinus = document.querySelector(".plusMinus")
 const backSpace = document.querySelector(".backspace")
 
+// Clear event listener
+const clear = document.querySelector(".clear")
+clear.onclick = () => {
+    display.textContent = "";
+    left = "";
+    right = "";
+
+}
+
+
+
 equal.onclick = () => {
     if(left != "" && operation != ""){
         right = display.textContent
         console.log(left)
         console.log(operation)
-        console.log(right)
+        console.log("right: " + right)
         
         display.textContent = operate(Number(left), operation, Number(right))
+        left = operate(Number(left), operation, Number(right)).toString()
+        right = ""
+        console.log("right now: " + right)
     }
     else if(display.textContent === "80085") {
         window.open("https://www.youtube.com/watch?v=kvTJyMmadmA", '_blank').focus();
     }
     else{
-        alert("sup")
+        alert("left or right operand is not assigned a value")
     }
 }
 
